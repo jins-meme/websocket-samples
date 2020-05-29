@@ -9,13 +9,14 @@
 <body>
     <input id="addr" type="text" value="127.0.0.1" name="name" size="30" maxlength="20">
     <input id="port" type="text" value="5001" name="name" size="5" maxlength="20">
-    <button id="start_btn">Start</button>
+    <button id="start_receive_btn">Start receive data</button>
+    <button id="start_send_btn">Start send data</button>
     <p id="ws_status"></p>
     <p id="ws_msg"></p>
     <script>
-        start_btn.addEventListener("click", e => {
+        start_receive_btn.addEventListener("click", e => {
 
-            start_btn.setAttribute("disabled", true);
+            start_receive_btn.setAttribute("disabled", true);
             const fqdn = "ws://" + addr.value +  ":" + port.value;
             
             const sock = new WebSocket(fqdn);
@@ -26,6 +27,37 @@
 
             sock.addEventListener("message", e => {
                 ws_msg.innerHTML = e.data;
+            });
+
+            sock.addEventListener("close", e => {
+                ws_status.innerHTML = "on close";
+            });
+
+            sock.addEventListener("error", e => {
+                ws_status.innerHTML = "on error";
+            });
+
+
+        });
+
+        start_send_btn.addEventListener("click", e => {
+
+            start_send_btn.setAttribute("disabled", true);
+            const fqdn = "ws://" + addr.value +  ":" + port.value;
+            
+            const sock = new WebSocket(fqdn);
+
+            let i = 0;
+            setInterval(() => {
+              sock.send(`id: ${i++}, ${Date.now()}`);
+            }, 50);
+
+            sock.addEventListener("open", e => {
+                ws_status.innerHTML = "on open";
+            });
+
+            sock.addEventListener("message", e => {
+                ws_status.innerHTML = "message: " + e.data;
             });
 
             sock.addEventListener("close", e => {

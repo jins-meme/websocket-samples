@@ -1,14 +1,17 @@
 {
   "name": "ws_test",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["web socket"],
+  "keywords": [
+    "web socket"
+  ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "http-server": "^0.12.3",
     "ws": "^7.3.0"
   },
   "dependencies": {},
