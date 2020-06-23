@@ -1,3 +1,7 @@
+/**
+ * 受けとった currentData を20パケットづつでave/max/minをconsoleに表示
+ */
+
 const server = require("ws").Server;
 const ws_server = new server({ port: 5001 });
 
