@@ -4,10 +4,10 @@ JINS MEME のデータをWebsocket serverで受け取るサンプル。
 
 ## Pythonのサンプル
 
-https://github.com/Pithikos/python-websocket-server をインストール
-$ python svr_rec.py
+1. https://github.com/Pithikos/python-websocket-server をインストール
+2. `python svr_rec.py`
 
 ## Node.jsのサンプル
 
-npm i ws
-$ node svr_rec.js
+1. npm i ws
+2. `node svr_rec.js`
