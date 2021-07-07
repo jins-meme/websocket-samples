@@ -1,6 +1,12 @@
 const WebSocket = require('ws');
+const args = require("args-parser")(process.argv);
+//console.log(JSON.stringify(args))
 
-const ws = new WebSocket('ws://127.0.0.1:5001');
+const host = args.host === undefined ? "localhost" : args.host;
+const port = args.port === undefined ? "5001" : args.port;
+
+const ws = new WebSocket(`ws://${host}:${port}`);
+
 
 let counter = 0;
 ws.on('open', function open() {
@@ -13,7 +19,7 @@ ws.on('open', function open() {
         blinkStrength: bool_r1 ? 30 + Math.floor(Math.random() * 60) : 0,
         roll: 1.12 + rand_r1, pitch: 3.14 + rand_r1, yaw: 23.64 + rand_r1,
         accX: -0.125, accY: rand_r2, accZ: -16.5, fitError: 0, walking: bool_r1 ? 1 : 0, noiseStatus: 0, powerLeft: 3,
-        eyeMoveUp: 0, eyeMoveDown: 0, eyeMoveLeft: 0, eyeMoveRight: 0, sequenceNumber: ++counter % 256
+        eyeMoveUp: 0, eyeMoveDown: 0, eyeMoveLeft: 0, eyeMoveRight: 0, sequenceNumber: ++counter % 256 
     };
     ws.send(JSON.stringify(data));   
   },50)

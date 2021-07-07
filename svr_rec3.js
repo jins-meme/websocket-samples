@@ -2,7 +2,9 @@
  * 瞬目だけ表示するWSサーバー
  */
 const server = require("ws").Server;
-const ws_server = new server({ port: 5001 });
+const args = require("args-parser")(process.argv);
+const port = args.port === undefined ? "5001" : args.port;
+const ws_server = new server({ port: port });
 
 ws_server.on("connection", ws => {
   console.log("connected from client");
