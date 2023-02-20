@@ -15,7 +15,7 @@ JINS MEME Loggerからのデータを想定しています。
 
 ## バリエーション詳細
 
-- JapaScript
+- JavaScript
   - svr_rec.js: serverとして受信したデータをそのまま表示
   - svr_rec2.js: serverとして1秒毎に受信数のstatsを表示
   - svr_rec3.js: serverとして受信したblinkStrength/blinkSpeedを表示
